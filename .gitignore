@@ -1,0 +1,8 @@
+### common ignores
+/target/
+/target
+target/
+.settings
+.settings/
+.classpath
+.project
