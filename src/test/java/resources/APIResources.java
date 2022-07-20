@@ -4,6 +4,7 @@ public enum APIResources {
 	
 	GetRecipe("api/Recipes"),
 	GETFoodCategory("/Recipes/FoodCategory/");
+	
 
 	
     private String resource;
