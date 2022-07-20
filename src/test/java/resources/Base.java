@@ -21,6 +21,8 @@ public class Base {
 	
 	public static RequestSpecification req;
 	public static ResponseSpecification res;
+	
+	
 	public RequestSpecification requestSpecification() throws IOException
 	{
 		PreemptiveBasicAuthScheme auth = new PreemptiveBasicAuthScheme();
@@ -61,7 +63,7 @@ public class Base {
     }
 	public ResponseSpecification responseSpecification()
 	{
-	ResponseSpecification res = new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.JSON).build();
+	res = new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.JSON).build();
     
 	return res;
 	}
