@@ -22,10 +22,8 @@ public enum APIResources {
 	PostMorbidity("/api/morbidity"),
 	PutMorbidity("/api/morbidity/"),
 	DeleteMorbidity("/api/morbidity/"),
-	
-	;
-	
 
+	GETFoodCategory("/Recipes/FoodCategory/");
 	
     private String resource;
 
