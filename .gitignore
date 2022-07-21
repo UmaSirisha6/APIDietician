@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 ### common ignores
 /target/
 /target
@@ -9,4 +9,3 @@ target/
 .project
 =======
 /target/
->>>>>>> 9b98ca59e2748cec998a662a17b0c4df52c6a74f
