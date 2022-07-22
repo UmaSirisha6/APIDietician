@@ -8,21 +8,21 @@
     "morbidityTestId": {
       "type": "string"
     },
+    "morbidityTestMarkerRef": {
+      "type": "string"
+    },
     "morbidityTestName": {
       "type": "string"
     },
     "morbidityTestUnit": {
-      "type": "string"
-    },
-    "morbidityTestMarkerRef": {
       "type": "string"
     }
   },
   "required": [
     "morbidityName",
     "morbidityTestId",
+    "morbidityTestMarkerRef",
     "morbidityTestName",
-    "morbidityTestUnit",
-    "morbidityTestMarkerRef"
+    "morbidityTestUnit"
   ]
 }
