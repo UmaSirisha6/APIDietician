@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "array",
+  "items": [
+    {
+      "type": "object",
+      "properties": {
+        "morbidityName": {
+          "type": "string"
+        },
+        "morbidityTestId": {
+          "type": "string"
+        },
+        "morbidityTestName": {
+          "type": "string"
+        },
+        "morbidityTestUnit": {
+          "type": "string"
+        },
+        "morbidityTestMarkerRef": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "morbidityName",
+        "morbidityTestId",
+        "morbidityTestName",
+        "morbidityTestUnit",
+        "morbidityTestMarkerRef"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "morbidityName": {
+          "type": "string"
+        },
+        "morbidityTestId": {
+          "type": "string"
+        },
+        "morbidityTestName": {
+          "type": "string"
+        },
+        "morbidityTestUnit": {
+          "type": "string"
+        },
+        "morbidityTestMarkerRef": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "morbidityName",
+        "morbidityTestId",
+        "morbidityTestName",
+        "morbidityTestUnit",
+        "morbidityTestMarkerRef"
+      ]
+    }
+  ]
+}

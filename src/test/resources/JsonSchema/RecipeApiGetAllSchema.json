@@ -16,13 +16,33 @@
         },
         "recipeName": {
           "type": "string"
+        },
+        "recipeIngredient": {
+          "type": "string"
+        },
+        "recipeNutrient": {
+          "type": "string"
+        },
+        "recipeUrl": {
+          "type": "string"
+        },
+        "recipeImg": {
+          "type": "string"
+        },
+        "recipeStep": {
+          "type": "string"
         }
       },
       "required": [
         "recipeId",
         "recipeFoodCategory",
         "recipeType",
-        "recipeName"
+        "recipeName",
+        "recipeIngredient",
+        "recipeNutrient",
+        "recipeUrl",
+        "recipeImg",
+        "recipeStep"
       ]
     },
     {
@@ -39,13 +59,25 @@
         },
         "recipeName": {
           "type": "string"
+        },
+        "recipeIngredient": {
+          "type": "string"
+        },
+        "recipeNutrient": {
+          "type": "string"
+        },
+        "recipeStep": {
+          "type": "string"
         }
       },
       "required": [
         "recipeId",
         "recipeFoodCategory",
         "recipeType",
-        "recipeName"
+        "recipeName",
+        "recipeIngredient",
+        "recipeNutrient",
+        "recipeStep"
       ]
     }
   ]
