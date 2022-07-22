@@ -10,7 +10,8 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(features="src/test/java/features",glue= "stepDefinitions",
                   plugin= {"html:target/Cucumber.html",
 		                    "json:target/Cucumber.json",
-		                     "rerun:target/failedScenarios.txt"})
+		                     "rerun:target/failedScenarios.txt"},  
+                monochrome= true)
 
 public class TestRunner {
 
