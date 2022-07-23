@@ -15,7 +15,7 @@ public enum APIResources {
 	GetUserByFirstName("/getUserbyFirstName/"),
 	GetUserByUserType("/getUserbyUserType/"),
 	Users("/users"), //user put , post , delete have same resource
-		
+	PUTUser("/users/"),	
 	GetMorbiditybyName("/api/getMorbiditybyName/"),
 	GetMorbiditybyTestid("/api/getMorbiditybyMorbidityTestId/"),
 	GetMorbidity("/api/morbidity"),
