@@ -3,8 +3,8 @@ package resources;
 public enum DieticianResources {
 	
 	GetRecipe("Recipes/"),
-	GETFoodCategory("Recipes/RecipeFoodCategory="),
-	GetRecipeIngredent("Recipes/RecipeIngredient="),
+	GetFoodCategory("Recipes/RecipeFoodCategory="),
+	GetRecipeIngredient("Recipes/RecipeIngredient="),
 	GetRecipeByNutrient("Recipes/RecipeNutrient="),
 	GetRecipeByRecipeType("api/Recipes/RecipeType="),
 	

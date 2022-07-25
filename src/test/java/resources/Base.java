@@ -49,7 +49,7 @@ public class Base {
 	public static String getGlobalValue(String key) throws IOException
 	{
 		Properties prop =new Properties();
-		FileInputStream fis =new FileInputStream(".\\config.properties");
+		FileInputStream fis =new FileInputStream("./src/test/resources/config.properties");
 		prop.load(fis);
 		return prop.getProperty(key);
 	}
