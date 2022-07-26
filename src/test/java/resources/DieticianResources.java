@@ -8,7 +8,8 @@ public enum DieticianResources {
 	GetRecipeByNutrient("Recipes/RecipeNutrient="),
 	GetRecipeByRecipeType("api/Recipes/RecipeType="),
 	
-	GetUserApi("Users"),
+	GetUserApi("Users/"),
+	GetUserByApi("us"),
 	GetUserByFirstName("Users/FirstName="),
 	GetUserByUserType("Users/UserType="),
 	GetUserByDieticianID("Users/DieticianId="),

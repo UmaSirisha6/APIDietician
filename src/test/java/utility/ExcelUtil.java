@@ -13,13 +13,15 @@ public class ExcelUtil {
 	
 	public static ExcelReader reader;
 	
-	public static List<Map<String, String>> getxlData(String SheetName) {
-		
+
+	public static List<Map<String, String>> getxlData(String SheetName) {	
 		
 		reader = new ExcelReader();
 		//*********   data from excel  **********  //
 		System.out.println("Reading excel");
+
 		List<Map<String, String>> data = null;
+
 		try {
 			data = 	reader.getData(Base.getGlobalValue("ExcelFilePath"), SheetName);
 		} catch (InvalidFormatException e) {
