@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.util.Map;
 
 import org.hamcrest.MatcherAssert;
-import org.hamcrest.Matchers;
 
 import resources.Base;
 import resources.DieticianResources;

@@ -33,11 +33,12 @@ public class Base {
 		if(req==null)
 		{
 		PrintStream log =new PrintStream(new FileOutputStream("logging.txt"));
-		 req=new RequestSpecBuilder().setBaseUri(getGlobalValue("baseURI"))
+	    req=new RequestSpecBuilder().setBaseUri(getGlobalValue("baseURI"))
 				 .setAuth(auth).setUrlEncodingEnabled(false)
 				 .addFilter(RequestLoggingFilter.logRequestTo(log))
 				 .addFilter(ResponseLoggingFilter.logResponseTo(log))
 		         .setContentType(ContentType.JSON).build();
+		       
 		 return req;
 		}
 		return req;

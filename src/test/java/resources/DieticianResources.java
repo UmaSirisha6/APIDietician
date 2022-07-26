@@ -8,7 +8,8 @@ public enum DieticianResources {
 	GetRecipeByNutrient("Recipes/RecipeNutrient="),
 	GetRecipeByRecipeType("api/Recipes/RecipeType="),
 	
-	GetUserApi("Users"),
+	GetUserApi("Users/"),
+	GetUserByApi("us"),
 	GetUserByFirstName("Users/FirstName="),
 	GetUserByUserType("Users/UserType="),
 	GetUserByDieticianID("Users/DieticianId="),
@@ -27,8 +28,9 @@ public enum DieticianResources {
 	PutMorbidity("Morbidity/MorbidityName="),
 	PutMorbiditybyTestId("&MorbidityTestId="),
 	DeleteMorbidity("Morbidity/MorbidityName="),
-	DeleteMorbiditybyTestId("&MorbidityTestId=");
-
+	DeleteMorbiditybyTestId("&MorbidityTestId="),
+	UserApi("Users/"),
+    userApi("userss/");
 	
     private String resource;
 
