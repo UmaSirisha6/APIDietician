@@ -31,10 +31,9 @@ public enum DieticianResources {
 	MorbidityAPI("Morbidity/"),
 	UserApi("Users/"),
 
-	//PutMorbidity("Morbidity/MorbidityName="),
-	//PutMorbiditybyTestId("&MorbidityTestId="),
+	UserApiWrong("users/"),
     userApi("userss/");
-	
+
     private String resource;
 
     DieticianResources(String resource)
