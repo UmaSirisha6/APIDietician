@@ -24,11 +24,14 @@ public enum DieticianResources {
 	GetMorbiditybyTestid("Morbidity/MorbidityTestId="),
 	
 	PostMorbidity("Morbidity"),
-	PutMorbidity("Morbidity/MorbidityName="),
-	PutMorbiditybyTestId("&MorbidityTestId="),
 	DeleteMorbidity("Morbidity/MorbidityName="),
-	DeleteMorbiditybyTestId("&MorbidityTestId=");
+	DeleteMorbiditybyTestId("&MorbidityTestId="),
+	
+	MorbidityAPI("Morbidity/"),
+	UserApi("Users/");
 
+	//PutMorbidity("Morbidity/MorbidityName="),
+	//PutMorbiditybyTestId("&MorbidityTestId="),
 	
     private String resource;
 

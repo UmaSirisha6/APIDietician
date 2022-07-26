@@ -33,17 +33,19 @@ public class Base {
 		if(req==null)
 		{
 		PrintStream log =new PrintStream(new FileOutputStream("logging.txt"));
-		 req=new RequestSpecBuilder().setBaseUri(getGlobalValue("baseURI"))
-				 .setAuth(auth).setUrlEncodingEnabled(false)
+			req=new RequestSpecBuilder().setBaseUri(getGlobalValue("baseURI"))
+				 .setAuth(auth)
 				 .addFilter(RequestLoggingFilter.logRequestTo(log))
 				 .addFilter(ResponseLoggingFilter.logResponseTo(log))
 		         .setContentType(ContentType.JSON).build();
+		 
 		 return req;
 		}
 		return req;
 		
 		
 	}
+	
 	
 	
 	public static String getGlobalValue(String key) throws IOException
