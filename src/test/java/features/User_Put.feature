@@ -6,9 +6,8 @@ Feature: Update User Details in UserAPI
   @UserPUTApi
   Scenario Outline: check User Put request
     Given User creates PUT Method EndPoint from "<sheetName>" and <RowNumber>
-    When User calls "UserApi" Https Request with "PUT"
-    Then User receive HTTP "Status code" and response body
-
+    When User calls "UserApi" Http Request with "PUT"
+    Then User receive http "Status code" and response body
     Examples: 
       | sheetName  | RowNumber |
       | UserApiPUT |         0 |
@@ -17,8 +16,8 @@ Feature: Update User Details in UserAPI
   @UserPutApiWithInvlidEndPoint
   Scenario Outline: check User Put request
     Given User creates PUT Method EndPoint from "<sheetName>" and <RowNumber>
-    When User calls "userApi" Https Request with "PUT"
-    Then User receive HTTP "Status code" and response body
+    When User calls "userApi" Http Request with "PUT"
+    Then User receive http "Status code" and response body
 
     Examples: 
       | sheetName  | RowNumber |
@@ -28,8 +27,8 @@ Feature: Update User Details in UserAPI
   @UserPutApiWithInvlidFirstname
   Scenario Outline: check User Put request
     Given User creates PUT Method EndPoint from "<sheetName>" and <RowNumber>
-    When User calls "UserApi" Https Request with "PUT"
-    Then User receive HTTP "Status code" and response body
+    When User calls "UserApi" Http Request with "PUT"
+    Then User receive http "Status code" and response body
 
     Examples: 
       | sheetName  | RowNumber |
@@ -42,8 +41,8 @@ Feature: Update User Details in UserAPI
   @UserPutAPIWithInvalidLastname
   Scenario Outline: check User Put request
     Given User creates PUT Method EndPoint from "<sheetName>" and <RowNumber>
-    When User calls "UserApi" Https Request with "PUT"
-    Then User receive HTTP "Status code" and response body
+    When User calls "UserApi" Http Request with "PUT"
+    Then User receive http "Status code" and response body
 
     Examples: 
       | sheetName  | RowNumber |
@@ -56,8 +55,8 @@ Feature: Update User Details in UserAPI
   @UserPutAPIWithInvalidContact
   Scenario Outline: check User Put request
     Given User creates PUT Method EndPoint from "<sheetName>" and <RowNumber>
-    When User calls "UserApi" Https Request with "PUT"
-    Then User receive HTTP "Status code" and response body
+    When User calls "UserApi" Http Request with "PUT"
+    Then User receive http "Status code" and response body
 
     Examples: 
       | sheetName  | RowNumber |
@@ -70,8 +69,8 @@ Feature: Update User Details in UserAPI
   @UserPutAPIWithInvalidCity
   Scenario Outline: check User Put request
     Given User creates PUT Method EndPoint from "<sheetName>" and <RowNumber>
-    When User calls "UserApi" Https Request with "PUT"
-    Then User receive HTTP "Status code" and response body
+    When User calls "UserApi" Http Request with "PUT"
+    Then User receive http "Status code" and response body
 
     Examples: 
       | sheetName  | RowNumber |
@@ -83,8 +82,8 @@ Feature: Update User Details in UserAPI
   @UserPutAPIWithInvalidState
   Scenario Outline: check User Put request
     Given User creates PUT Method EndPoint from "<sheetName>" and <RowNumber>
-    When User calls "UserApi" Https Request with "PUT"
-    Then User receive HTTP "Status code" and response body
+    When User calls "UserApi" Http Request with "PUT"
+    Then User receive http "Status code" and response body
 
     Examples: 
       | sheetName  | RowNumber |
@@ -96,8 +95,8 @@ Feature: Update User Details in UserAPI
   @UserPutAPIWithInvalidCountry
   Scenario Outline: check User Put request
     Given User creates PUT Method EndPoint from "<sheetName>" and <RowNumber>
-    When User calls "UserApi" Https Request with "PUT"
-    Then User receive HTTP "Status code" and response body
+    When User calls "UserApi" Http Request with "PUT"
+    Then User receive http "Status code" and response body
 
     Examples: 
       | sheetName  | RowNumber |
@@ -109,8 +108,8 @@ Feature: Update User Details in UserAPI
   @UserPutAPIWithInvalidEmailID
   Scenario Outline: check User Put request
     Given User creates PUT Method EndPoint from "<sheetName>" and <RowNumber>
-    When User calls "UserApi" Https Request with "PUT"
-    Then User receive HTTP "Status code" and response body
+    When User calls "UserApi" Http Request with "PUT"
+    Then User receive http "Status code" and response body
 
     Examples: 
       | sheetName  | RowNumber |
@@ -123,8 +122,8 @@ Feature: Update User Details in UserAPI
   @UserPutAPIWithInvalidFoodCategory
   Scenario Outline: check User Put request
     Given User creates PUT Method EndPoint from "<sheetName>" and <RowNumber>
-    When User calls "UserApi" Https Request with "PUT"
-    Then User receive HTTP "Status code" and response body
+    When User calls "UserApi" Http Request with "PUT" 
+    Then User receive http "Status code" and response body
 
     Examples: 
       | sheetName  | RowNumber |
@@ -137,8 +136,8 @@ Feature: Update User Details in UserAPI
   @UserPutAPIWithInvalidAllergy
   Scenario Outline: check User Put request
     Given User creates PUT Method EndPoint from "<sheetName>" and <RowNumber>
-    When User calls "UserApi" Https Request with "PUT"
-    Then User receive HTTP "Status code" and response body
+    When User calls "UserApi" Http Request with "PUT"
+    Then User receive http "Status code" and response body
 
     Examples: 
       | sheetName  | RowNumber |
@@ -151,8 +150,8 @@ Feature: Update User Details in UserAPI
   @UserPutAPIWithInvalidParams
   Scenario Outline: check User Put request
     Given User creates PUT Method EndPoint from "<sheetName>" and <RowNumber>
-    When User calls "UserApi" Https Request with "PUT"
-    Then User receive HTTP "Status code" and response body
+    When User calls "UserApi" Http Request with "PUT"
+    Then User receive http "Status code" and response body
 
     Examples: 
       | sheetName  | RowNumber |

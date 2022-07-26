@@ -35,7 +35,7 @@ public class Morbiditty_Put extends Base{
 		ReqBody = PayLoad.creatMorbidityPutBody(xl);
 		req = given().spec(requestSpecification()).body(ReqBody);
 		//JSON schema validation for request body
-		//assertThat(ReqBody, matchesJsonSchemaInClasspath(getGlobalValue("MorbidityPutReqSchema")));
+		assertThat(ReqBody, matchesJsonSchemaInClasspath(getGlobalValue("MorbidityPutReqSchema")));
 	}
 
 	@When("User calls put morbidity {string} Https Request with {string}")
@@ -57,7 +57,7 @@ public class Morbiditty_Put extends Base{
 		assertEquals(xl.get("RepMorbidityMarkerRef"),response.jsonPath().get("MorbidityMarkerRef"));
 		assertEquals(xl.get("MorbidityTestUnit"),response.jsonPath().get("MorbidityTestUnit"));
 		//JSON schema validation for response body
-		//response.then().assertThat().body(matchesJsonSchemaInClasspath(getGlobalValue("MorbidityPutReqSchema")));
+		response.then().assertThat().body(matchesJsonSchemaInClasspath(getGlobalValue("MorbidityPutReqSchema")));
 
 	}
 

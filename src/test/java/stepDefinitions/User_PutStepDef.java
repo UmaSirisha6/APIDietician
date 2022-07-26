@@ -68,8 +68,8 @@ public class User_PutStepDef extends Base {
 
 	}
 
-	@When("User calls {string} Https Request with {string}")
-	public void user_calls_https_request_with(String resource, String method) {
+	@When("User calls {string} Http Request with {string}")
+	public void user_calls_Http_request_with(String resource, String method) {
 
 		resourceAPI = DieticianResources.valueOf(resource);
 
@@ -86,7 +86,7 @@ public class User_PutStepDef extends Base {
 
 	}
 
-	@Then("User receive HTTP {string} and response body")
+	@Then("User receive http {string} and response body")
 	public void user_receive_http_and_response_body(String statuscode) {
 
 		Status = Integer.valueOf(xl.get("ExpectedStatusCode"));
