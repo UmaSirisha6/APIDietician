@@ -30,8 +30,9 @@ public enum DieticianResources {
 	DeleteMorbidity("Morbidity/MorbidityName="),
 	DeleteMorbiditybyTestId("&MorbidityTestId="),
 	UserApi("Users/"),
+	UserApiWrong("users/"),
     userApi("userss/");
-	
+
     private String resource;
 
     DieticianResources(String resource)
