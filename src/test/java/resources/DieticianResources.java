@@ -8,7 +8,8 @@ public enum DieticianResources {
 	GetRecipeByNutrient("Recipes/RecipeNutrient="),
 	GetRecipeByRecipeType("api/Recipes/RecipeType="),
 	
-	GetUserApi("Users"),
+	GetUserApi("Users/"),
+	GetUserByApi("us"),
 	GetUserByFirstName("Users/FirstName="),
 	GetUserByUserType("Users/UserType="),
 	GetUserByDieticianID("Users/DieticianId="),
@@ -30,7 +31,8 @@ public enum DieticianResources {
 	DeleteMorbiditybyTestId("&MorbidityTestId="),
 	UserApi("Users/"),
 	UserApiWrong("users/");
-	
+    userApi("userss/");
+
     private String resource;
 
     DieticianResources(String resource)
