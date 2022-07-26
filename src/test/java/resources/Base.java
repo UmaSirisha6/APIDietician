@@ -21,12 +21,14 @@ public class Base {
 	
 	public static RequestSpecification req;
 	public static ResponseSpecification res;
+	
+	
 	public RequestSpecification requestSpecification() throws IOException
 	{
 		PreemptiveBasicAuthScheme auth = new PreemptiveBasicAuthScheme();
 		auth.setUserName(getGlobalValue("Username"));
         auth.setPassword(getGlobalValue("Password"));
-       
+        System.out.println("print Base Uri : "+ getGlobalValue("baseURI"));
 
 		if(req==null)
 		{
@@ -36,7 +38,9 @@ public class Base {
 				 .addFilter(RequestLoggingFilter.logRequestTo(log))
 				 .addFilter(ResponseLoggingFilter.logResponseTo(log))
 		         .setContentType(ContentType.JSON).build();
+		       
 		 return req;
+		 
 		}
 		return req;
 		
@@ -47,7 +51,7 @@ public class Base {
 	public static String getGlobalValue(String key) throws IOException
 	{
 		Properties prop =new Properties();
-		FileInputStream fis =new FileInputStream(".\\config.properties");
+		FileInputStream fis =new FileInputStream("./src/test/resources/config.properties");
 		prop.load(fis);
 		return prop.getProperty(key);
 	}
@@ -61,7 +65,7 @@ public class Base {
     }
 	public ResponseSpecification responseSpecification()
 	{
-	ResponseSpecification res = new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.JSON).build();
+	res = new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.JSON).build();
     
 	return res;
 	}
