@@ -35,7 +35,7 @@ public class Morbiditty_Put extends Base{
 		ReqBody = PayLoad.creatMorbidityPutBody(xl);
 		req = given().spec(requestSpecification()).body(ReqBody);
 		//JSON schema validation for request body
-		assertThat(ReqBody, matchesJsonSchemaInClasspath("./JsonSchema/MorbidityPutReqSchema.json"));
+		//assertThat(ReqBody, matchesJsonSchemaInClasspath(getGlobalValue("MorbidityPutReqSchema")));
 	}
 
 	@When("User calls put morbidity {string} Https Request with {string}")
@@ -50,15 +50,14 @@ public class Morbiditty_Put extends Base{
 
 	
 	@Then("User receive  morbidity PUT request sucess {string} and response body")
-	public void user_receive_morbidity_put_request_sucess_and_response_body(String sucesscode) {
+	public void user_receive_morbidity_put_request_sucess_and_response_body(String sucesscode) throws IOException {
 	
 		assertEquals(200,response.statusCode());
 		assertEquals(xl.get("RepMessage"),response.jsonPath().get("Message"));
 		assertEquals(xl.get("RepMorbidityMarkerRef"),response.jsonPath().get("MorbidityMarkerRef"));
 		assertEquals(xl.get("MorbidityTestUnit"),response.jsonPath().get("MorbidityTestUnit"));
 		//JSON schema validation for response body
-		//response.then().assertThat().body(matchesJsonSchemaInClasspath("./JsonSchema/MorbidityPutResSchema.json"));
-		response.then().assertThat().body(matchesJsonSchemaInClasspath("./JsonSchema/MorbidityRequestSchema.json"));
+		//response.then().assertThat().body(matchesJsonSchemaInClasspath(getGlobalValue("MorbidityPutReqSchema")));
 
 	}
 
