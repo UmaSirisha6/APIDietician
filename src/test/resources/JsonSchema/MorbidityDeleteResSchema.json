@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "MorbidityName": {
+      "type": "string"
+    },
+    "MorbidityTestId": {
+      "type": "string"
+    },
+    "Message": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "MorbidityName",
+    "MorbidityTestId",
+    "Message"
+  ]
+}

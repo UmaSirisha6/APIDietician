@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "Items": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "MorbidityTestName": {
+              "type": "string"
+            },
+            "MorbidityMarkerRef": {
+              "type": "string"
+            },
+            "MorbidityName": {
+              "type": "string"
+            },
+            "MorbidityTestId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "MorbidityTestName",
+            "MorbidityMarkerRef",
+            "MorbidityName",
+            "MorbidityTestId"
+          ]
+        }
+      ]
+    }
+  },
+  "required": [
+    "Items"
+  ]
+}

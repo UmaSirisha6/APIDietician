@@ -27,8 +27,9 @@ public enum DieticianResources {
 	PutMorbidity("Morbidity/MorbidityName="),
 	PutMorbiditybyTestId("&MorbidityTestId="),
 	DeleteMorbidity("Morbidity/MorbidityName="),
-	DeleteMorbiditybyTestId("&MorbidityTestId=");
-
+	DeleteMorbiditybyTestId("&MorbidityTestId="),
+	UserApi("Users/"),
+	UserApiWrong("users/");
 	
     private String resource;
 
