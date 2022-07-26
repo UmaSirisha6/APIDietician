@@ -93,6 +93,7 @@
 			<groupId>tech.grasshopper</groupId>
 			<artifactId>extentreports-cucumber7-adapter</artifactId>
 			<version>1.5.1</version>
+
 		</dependency>
 		
 		<dependency>
@@ -108,7 +109,32 @@
     		<version>5.1.1</version>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
+	
+
+<build>
+<plugins>
+	<plugin>
+	<groupId>tech.grasshopper</groupId>
+	<artifactId>cucumber-pdf-plugin</artifactId>
+	<version>1.11.0</version>
+	<executions>
+		<execution>
+			<id>report</id>
+			<phase>post-integration-test</phase>
+			<goals>
+				<goal>pdfreport</goal>
+			</goals>
+		</execution>
+	</executions>
+	<configuration>
+		<cucumberJsonReportDirectory>${project.build.directory}/json-report</cucumberJsonReportDirectory>
+	</configuration>
+</plugin>
+</plugins>
+</build>
+
 </project>
 
 
