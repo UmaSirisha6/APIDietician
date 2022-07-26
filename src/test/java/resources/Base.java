@@ -28,17 +28,19 @@ public class Base {
 		PreemptiveBasicAuthScheme auth = new PreemptiveBasicAuthScheme();
 		auth.setUserName(getGlobalValue("Username"));
         auth.setPassword(getGlobalValue("Password"));
-       
+        System.out.println("print Base Uri : "+ getGlobalValue("baseURI"));
 
 		if(req==null)
 		{
 		PrintStream log =new PrintStream(new FileOutputStream("logging.txt"));
 		 req=new RequestSpecBuilder().setBaseUri(getGlobalValue("baseURI"))
-				 .setAuth(auth).setUrlEncodingEnabled(false)
+				 .setAuth(auth)
 				 .addFilter(RequestLoggingFilter.logRequestTo(log))
 				 .addFilter(ResponseLoggingFilter.logResponseTo(log))
 		         .setContentType(ContentType.JSON).build();
+		       
 		 return req;
+		 
 		}
 		return req;
 		
