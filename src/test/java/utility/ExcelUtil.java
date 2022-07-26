@@ -18,11 +18,7 @@ public class ExcelUtil {
 		System.out.println("Reading excel");
 		List<Map<String,String>> data = null;
 		try {
-			data = 	reader.getData(Base.getGlobalValue("ExcelFilePath"), sheetName);
-		List<Map<String, String>> data = null;
-
-		try {
-			data = 	reader.getData(Base.getGlobalValue("ExcelFilePath"), SheetName);
+			data = 	reader.getData(Base.getGlobalValue("ExcelFilePath"),sheetName);
 		} catch (InvalidFormatException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

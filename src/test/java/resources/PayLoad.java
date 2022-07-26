@@ -26,6 +26,7 @@ public static String userpostPayLoad(String FirstName,String LastName,String Add
 				                  + "\"DieticianId\": \""+DieticianId+"\"\r\n" 
 				                  + " }";
 		return userpost;	
+	}
 	public static String createPayload(String Firstname,String Lastname,String Address1,String Address2,String Country,
 			String City,String State,String Contact, String Email,String FoodCategory, String Allergy) {
 	
