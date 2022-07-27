@@ -16,7 +16,7 @@ Feature: Update User Details in UserAPI
   @UserPutApiWithInvlidEndPoint
   Scenario Outline: check User Put request
     Given User creates PUT Method EndPoint from "<sheetName>" and <RowNumber>
-    When User calls "userApi" Http Request with "PUT"
+    When User calls "UserApiWrong" Http Request with "PUT"
     Then User receive http "Status code" and response body
 
     Examples: 

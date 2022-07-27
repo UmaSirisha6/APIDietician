@@ -30,38 +30,26 @@ public class User_DeleteStepDef extends Base{
 	
 	@Given("User creates DELETE Method EndPoint")
 	public void user_creates_delete_method_end_point() throws IOException {
-		req = given().spec(requestSpecification());
+		requestSpecBuilder = given().spec(requestSpecification());
 	}
 
 	@When("User calls {string} http Request with {string} from {string} and {int}")
 	public void user_calls_http_request_with_from_and(String resource, String method, String sheetName, Integer RowNumber) {
 		
-		resourceAPI = DieticianResources.valueOf(resource);
-		System.out.println(resourceAPI.getResource());
-		
-		System.out.println(resource);
-		System.out.println(method +  sheetName);
-	 	xl = ExcelUtil.getxlData(sheetName).get(RowNumber);
-	 	System.out.println(xl);
-	 	if (method.equalsIgnoreCase("DELETE"))
-		{
+		xl = ExcelUtil.getxlData(sheetName).get(RowNumber);
+	 	
 			ReqParam1=xl.get("param_DieticianId");
 			ReqParam2=xl.get("param_UserId");
 			
 			ReqParam ="DieticianId="+ReqParam1+"&UserId="+ReqParam2;
-			response = req.when()
-					.delete(resourceAPI.getResource() + ReqParam);
-				
-			System.out.println(resourceAPI.getResource() + ReqParam);
-			System.out.println(response.asPrettyString());
+			response = requestSpecBuilder.when().delete(resource(resource)+ ReqParam);
 
-		}
 	}
 
 	@Then("User receive HTTP {string} and response body for UserDelete")
-	public void user_receive_http_and_response_body_for_user_delete(String statuscode) {
+	public void user_receive_http_and_response_body_for_user_delete(String statuscode) throws NumberFormatException, IOException {
 		
-		res = req.then().spec(responseSpecification()).body("Message",Matchers.equalTo(xl.get("ExpectedResBody_Message")));
+		responseSpecBuilder = requestSpecBuilder.then().spec(responseSpecification()).body("Message",Matchers.equalTo(xl.get("ExpectedResBody_Message")));
         
 		Status = Integer.valueOf(xl.get("ExpectedStatusCode"));
 		assertEquals(Status,response.getStatusCode());

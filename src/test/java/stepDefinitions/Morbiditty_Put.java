@@ -25,34 +25,32 @@ public class Morbiditty_Put extends Base{
 	Response response;
 	ExcelUtil xlutil;
 	Map<String, String> xl;
-
+	private String StatusCode;
 	String ReqBody;
 	String ReqParam;
 
 	@Given("User creates morbidity PUT Method EndPoint from {string} and {string}")
 	public void user_creates_morbidity_put_method_end_point_from_and(String sheetname, String rownumber) throws IOException {
+		
 		xl = ExcelUtil.getxlData(sheetname).get(Integer.parseInt(rownumber));
 		ReqBody = PayLoad.creatMorbidityPutBody(xl);
-		req = given().spec(requestSpecification()).body(ReqBody);
-		//JSON schema validation for request body
+		requestSpecBuilder = given().spec(requestSpecification()).body(ReqBody);
 		assertThat(ReqBody, matchesJsonSchemaInClasspath(getGlobalValue("MorbidityPutReqSchema")));
 	}
 
 	@When("User calls put morbidity {string} Https Request with {string}")
-	public void user_calls_put_morbidity_https_request_with(String resource, String method) {
-		resourceAPI = DieticianResources.valueOf(resource);
-		if (method.equalsIgnoreCase("PUT")){
-			ReqParam="MorbidityName="+xl.get("ReqParam_MorbidityName")+"&MorbidityTestId="+xl.get("ReqParam_MorbidityTestId");
-			response=req.when()
-						.put(resourceAPI.getResource() + ReqParam);
-		}
+	public void user_calls_put_morbidity_https_request_with(String resource, String method)
+	{
+		ReqParam="MorbidityName="+xl.get("ReqParam_MorbidityName")+"&MorbidityTestId="+xl.get("ReqParam_MorbidityTestId");
+		response=requestSpecBuilder.when().put(resource(resource) + ReqParam);
 	}
 
 	
 	@Then("User receive  morbidity PUT request sucess {string} and response body")
 	public void user_receive_morbidity_put_request_sucess_and_response_body(String sucesscode) throws IOException {
 	
-		assertEquals(200,response.statusCode());
+		StatusCode = getGlobalValue("StatusCode");
+		assertEquals(Integer.parseInt(StatusCode),response.statusCode());
 		assertEquals(xl.get("RepMessage"),response.jsonPath().get("Message"));
 		assertEquals(xl.get("RepMorbidityMarkerRef"),response.jsonPath().get("MorbidityMarkerRef"));
 		assertEquals(xl.get("MorbidityTestUnit"),response.jsonPath().get("MorbidityTestUnit"));
@@ -64,7 +62,7 @@ public class Morbiditty_Put extends Base{
 	
 	@Then("User receive morbidity PUT request failed {string} and error message")
 	public void user_receive_morbidity_put_request_failed_and_error_message(String failcode) {
-
+		
 		if (failcode.equals("404")){
 			assertEquals(404,response.statusCode());
 			assertEquals(xl.get("RepMessage"),response.jsonPath().get("Message"));
@@ -75,8 +73,7 @@ public class Morbiditty_Put extends Base{
 		}
 		if (failcode.equals("405")){
 			assertEquals(405,response.statusCode());
-			//assertEquals(xl.get("RepMessage"),response.jsonPath().get("message"));
-
+	
 		}
 	}
 }

@@ -19,32 +19,42 @@ import io.restassured.specification.ResponseSpecification;
 
 public class Base {
 	
-	public static RequestSpecification req;
-	public static ResponseSpecification res;
+	public static RequestSpecification requestSpecBuilder;
+	public static ResponseSpecification responseSpecBuilder;
+	public static ResponseSpecification responseSpec;
+	public static String Ingredient;
+	static DieticianResources resourceAPI;
+	public static Response response;
 	
-	
-	public RequestSpecification requestSpecification() throws IOException
+	public static RequestSpecification requestSpecification() throws IOException
 	{
 		PreemptiveBasicAuthScheme auth = new PreemptiveBasicAuthScheme();
 		auth.setUserName(getGlobalValue("Username"));
         auth.setPassword(getGlobalValue("Password"));
-        if(req==null)
+       
+        if(requestSpecBuilder==null)
 		{
-        	PrintStream log =new PrintStream(new FileOutputStream("logging.txt"));
-        	req=new RequestSpecBuilder().setBaseUri(getGlobalValue("baseURI"))
+		PrintStream log =new PrintStream(new FileOutputStream("logging.txt"));
+		 requestSpecBuilder=new RequestSpecBuilder().setBaseUri(getGlobalValue("baseURI"))
 				 .setAuth(auth)
 				 .addFilter(RequestLoggingFilter.logRequestTo(log))
 				 .addFilter(ResponseLoggingFilter.logResponseTo(log))
 		         .setContentType(ContentType.JSON).build();
-
-		 return req;
-		 
+		 return requestSpecBuilder;
 		}
-		return req;
+		return requestSpecBuilder;
+		
 		
 	}
 	
-	
+	public static String resource(String resource)
+	{
+		
+		resourceAPI = DieticianResources.valueOf(resource);
+		String apiEndpoint = resourceAPI.getResource();
+		return apiEndpoint;
+		
+	}
 	
 	public static String getGlobalValue(String key) throws IOException
 	{
@@ -55,16 +65,24 @@ public class Base {
 	}
 	
 	
-	public String getJsonPath(Response response,String key)
+	public static String getJsonPath(Response response,String key)
 	{
+		System.out.println("In JsonPath");
 		String resp=response.asString();
 		JsonPath   js = new JsonPath(resp);
 		return js.get(key).toString();
     }
-	public ResponseSpecification responseSpecification()
+	public ResponseSpecification responseSpecification() throws NumberFormatException, IOException
 	{
-	res = new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.JSON).build();
+	responseSpecBuilder = new ResponseSpecBuilder().expectStatusCode(Integer.parseInt(getGlobalValue("StatusCode"))).expectContentType(ContentType.JSON).build();
     
-	return res;
+	return responseSpecBuilder;
 	}
+	
+
+	
 }
+
+
+
+

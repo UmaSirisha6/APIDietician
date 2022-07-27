@@ -17,7 +17,7 @@ Feature: Delete User record in User Api
   @UserApiDELETEWithInvalidEndPoint
   Scenario Outline: check if user able to delete User record in UserAPI
     Given User creates DELETE Method EndPoint
-    When User calls "userApi" http Request with "DELETE" from "<sheetName>" and <RowNumber>
+    When User calls "UserApiWrong" http Request with "DELETE" from "<sheetName>" and <RowNumber>
     Then User receive HTTP "Status code" and response body for UserDelete
 
     Examples: 

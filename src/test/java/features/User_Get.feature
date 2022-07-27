@@ -13,7 +13,7 @@ Feature: Checking Get Https request in User API
   #WRONG ENDPOINT
   @GetAllUserENDOINT
   Scenario: To get all the Users available
-    When User calls Get Https Request with "GetUserByApi" Endpoint
+    When User calls Get Https Request with "UserApiWrong" Endpoint
     Then User should receive HTTP Status code and response fields for "Get"
 
   #valid FirstName

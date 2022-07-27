@@ -1,10 +1,9 @@
 package stepDefinitions;
 
-import io.cucumber.java.en.*;
-import io.restassured.response.Response;
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.junit.Assert.assertEquals;
-import static io.restassured.module.jsv.JsonSchemaValidator.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,6 +11,9 @@ import java.util.Map;
 
 import org.hamcrest.MatcherAssert;
 
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import resources.Base;
 import resources.DieticianResources;
 import resources.PayLoad;
@@ -19,78 +21,48 @@ import utility.ExcelUtil;
 
 public class User_PutStepDef extends Base {
 
-	Response response;
-	ExcelUtil xlutil;
+	
 	DieticianResources resourceAPI;
 	Map<String, String> xl;
-	String expectedFirstName;
-	String expectedLastName;
-	String expectedAddress1;
-	String expectedAddress2;
-	String expectedCity;
-	String expectedState;
-	String expectedCountry;
-	String expectedContact;
-	String expectedEmail;
-	String expectedFoodCategory;
-	String expectedAllergy;
-	String Code;
-	String method;
-	String ReqBody;
-	String ReqParam;
-	String ReqParam1;
-	String ReqParam2;
+	static String Code;
+	static String method;
+	static String ReqBody;
+	static String ReqParam;
+	static String ReqParam1;
+	static String ReqParam2;
+	static String userputReq ;
 	int Status;
 
 	@Given("User creates PUT Method EndPoint from {string} and {int}")
 	public void user_creates_put_method_end_point_from_and(String sheetName, Integer RowNumber) throws IOException {
 
 		xl = ExcelUtil.getxlData(sheetName).get(RowNumber);
-		expectedFirstName = xl.get("FirstName");
-		expectedLastName = xl.get("LastName");
-		expectedAddress1 = xl.get("Address1");
-		expectedAddress2 = xl.get("Address2");
-		expectedCity = xl.get("City");
-		expectedState = xl.get("State");
-		expectedCountry = xl.get("Country");
-		expectedContact = xl.get("Contact");
-		expectedEmail = xl.get("Email");
-		expectedFoodCategory = xl.get("FoodCategory");
-		expectedAllergy = xl.get("Allergy");
+		
+		userputReq = PayLoad.createPayload(xl);
+		requestSpecBuilder = given().spec(requestSpecification()).body(userputReq);
 
-		String userputReq = PayLoad.createPayload(expectedFirstName, expectedLastName, expectedAddress1,
-				expectedAddress2, expectedCountry, expectedCity, expectedState, expectedContact, expectedEmail,
-				expectedFoodCategory, expectedAllergy);
-		req = given().spec(requestSpecification()).body(userputReq);
-
-		MatcherAssert.assertThat(userputReq,
-				matchesJsonSchema(new File("./src/test/resources/JsonSchema/UserPutReqSchema.json")));
+		//MatcherAssert.assertThat(userputReq,matchesJsonSchema(new File(getGlobalValue("UserPutReqSchema"))));
 
 	}
 
 	@When("User calls {string} Http Request with {string}")
-	public void user_calls_Http_request_with(String resource, String method) {
-
-		resourceAPI = DieticianResources.valueOf(resource);
-
-		if (method.equalsIgnoreCase("PUT")) {
-			
-			ReqParam1 = xl.get("param_DieticianId");
+	public void user_calls_Http_request_with(String resource, String method) 
+	{
+		    ReqParam1 = xl.get("param_DieticianId");
 			ReqParam2 = xl.get("param_UserId");
-
 			ReqParam = "DieticianId=" + ReqParam1 + "&UserId=" + ReqParam2;
-
-			response = req.when().put(resourceAPI.getResource() + ReqParam);
-
-		}
-
+			response = requestSpecBuilder.when().put(resource(resource) + ReqParam);
 	}
 
 	@Then("User receive http {string} and response body")
-	public void user_receive_http_and_response_body(String statuscode) {
+	public void user_receive_http_and_response_body(String statuscode) throws IOException {
 
-		Status = Integer.valueOf(xl.get("ExpectedStatusCode"));
+		Status = Integer.parseInt(xl.get("ExpectedStatusCode"));
 
+		if(Status==200)
+		{	response.then().assertThat().body(matchesJsonSchemaInClasspath(getGlobalValue("UserPutResSchema")));
+		}
+		
 		assertEquals(Status, response.getStatusCode());
 	}
 }

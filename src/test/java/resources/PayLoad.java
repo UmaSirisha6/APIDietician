@@ -1,13 +1,15 @@
 package resources;
 
-
+import java.util.List;
 import java.util.Map;
-	
-		
 
-public class PayLoad {
+public class PayLoad extends Base {
+
+	static List<Map<String, String>> xl;
+
+	public   String payload;
 	
-	public static String creatMorbidityPutBody(Map<String,String> xl) {
+public static String creatMorbidityPutBody(Map<String,String> xl) {
 		
 		String ReqBody = "{\r\n"
 				+ "\"MorbidityMarkerRef\" : \"" + xl.get("MorbidityMarkerRef") + "\",\r\n"
@@ -17,55 +19,71 @@ public class PayLoad {
 		return ReqBody;
 	}
 
-	public static String userpostPayLoad(String FirstName,String LastName,String Address1,String Address2,String City,String State,String Country,
-			String Contact,String Email,String FoodCategory,String Allergy,String LoginUsername,String Password,String UserType,String DieticianId)
+	public static String userpostPayLoad(Map<String,String> xl)
 	
 	{
-		String userpost="{\r\n\t" + "\"FirstName\" : \""+FirstName+"\",\r\n\t" 
-                                  + "\"LastName\" : \""+LastName+"\",\r\n\t" 
+		String userpost="{\r\n\t" + "\"FirstName\" : \""+xl.get("FirstName")+"\",\r\n\t" 
+                                  + "\"LastName\" : \""+xl.get("LastName")+"\",\r\n\t" 
 				                  + "\"Address\" : {\r\n\t"
-                                  + "\"Address1\" : \""+Address1+"\",\r\n\t\t" 
-				                  + "\"Address2\" : \""+Address2+ "\",\r\n\t\t" 
-				                  + "\"City\" : \"" +City+"\",\r\n\t\t" 
-				                  + "\"State\" : \"" +State+"\",\r\n\t\t"
-				                  +"\"Country\" : \"" +Country+"\"\r\n\t" 
+                                  + "\"Address1\" : \""+xl.get("Address1")+"\",\r\n\t\t" 
+				                  + "\"Address2\" : \""+xl.get("Address2")+ "\",\r\n\t\t" 
+				                  + "\"City\" : \"" +xl.get("City")+"\",\r\n\t\t" 
+				                  + "\"State\" : \"" +xl.get("State")+"\",\r\n\t\t"
+				                  +"\"Country\" : \"" +xl.get("Country")+"\"\r\n\t" 
 				                  + "},"
 				                  + "\r\n\t" 
-				                  + "\"Contact\" : \""+Contact+"\",\r\n\t" 
-				                  + "\"Email\" : \""+Email+"\",\r\n\t"
-				                  + "\"FoodCategory\" : \""+FoodCategory+"\",\r\n\t" 
-				                  + "\"Allergy\" : \""+Allergy+"\",\r\n\t"
-				                  + "\"LoginUsername\" : \""+LoginUsername+"\",\r\n\t"
-				                  + "\"Password\" : \""+Password+"\",\r\n\t"
-				                  + "\"UserType\" : \"" +UserType+"\",\r\n\t"
-				                  + "\"DieticianId\": \""+DieticianId+"\"\r\n" 
+				                  + "\"Contact\" : \""+xl.get("Contact")+"\",\r\n\t" 
+				                  + "\"Email\" : \""+xl.get("Email")+"\",\r\n\t"
+				                  + "\"FoodCategory\" : \""+xl.get("FoodCategory")+"\",\r\n\t" 
+				                  + "\"Allergy\" : \""+xl.get("Allergy")+"\",\r\n\t"
+				                  + "\"LoginUsername\" : \""+xl.get("LoginUsername")+"\",\r\n\t"
+				                  + "\"Password\" : \""+xl.get("Password")+"\",\r\n\t"
+				                  + "\"UserType\" : \"" +xl.get("UserType")+"\",\r\n\t"
+				                  + "\"DieticianId\": \""+xl.get("DieticianId")+"\"\r\n" 
 				                  + " }";
 		return userpost;	
 	}
 
 	
-	public static String createPayload(String Firstname,String Lastname,String Address1,String Address2,String Country,
-			String City,String State,String Contact, String Email,String FoodCategory, String Allergy) {
+	public static String createPayload(Map<String,String> xl) 
+	{
 	
 		
 		String userPut = 	"{\r\n"
-   		+ "  \"FirstName\": \" "+ Firstname +"\",\r\n"
-   		+ "  \"LastName\": \" "+Lastname+"\",\r\n"
+   		+ "  \"FirstName\": \" "+  xl.get("FirstName") +"\",\r\n"
+   		+ "  \"LastName\": \" "+xl.get("LastName")+"\",\r\n"
    		+ "  \"Address\": {\r\n"
-   		+ "    \"Address1\": \""+Address1+"\",\r\n"
-   		+ "    \"Address2\": \""+Address2+"\",\r\n"
-   		+ "    \"City\": \""+Country+"\",\r\n"
-   		+ "    \"State\": \""+City+"\",\r\n"
-   		+ "    \"Country\": \""+State+"\"\r\n"
+   		+ "    \"Address1\": \""+xl.get("Address1")+"\",\r\n"
+   		+ "    \"Address2\": \""+xl.get("Address2")+"\",\r\n"
+   		+ "    \"City\": \""+xl.get("City")+"\",\r\n"
+   		+ "    \"State\": \""+xl.get("State")+"\",\r\n"
+   		+ "    \"Country\": \""+xl.get("State")+"\"\r\n"
    		+ "  },\r\n"
-   		+ "  \"Contact\": \""+Contact+"\",\r\n"
-   		+ "  \"Email\": \""+Email+"\",\r\n"
-   		+ "  \"FoodCategory\": \""+FoodCategory+"\",\r\n"
-   		+ "  \"Allergy\": \""+Allergy+"\"\r\n"
-   		+ "}";
+   		+ "  \"Contact\": \""+xl.get("Country")+"\",\r\n"
+   		+ "  \"Email\": \""+xl.get("Email")+"\",\r\n"
+   		+ "  \"FoodCategory\": \""+xl.get("FoodCategory")+"\",\r\n"
+   		+ "  \"Allergy\": \""+xl.get("Allergy")+"\"\r\n"
+   		+ " }";
+   		;
 
 		return userPut;
-
+	
 	}
 
-	}	
+	public static String Payload(Map<String, String> xl) {
+	
+			
+		String payload = "{\r\n"
+			 		+ "  \"MorbidityName\": \" " + xl.get("MorbidityName") + "\",\r\n"
+			 		+ "  \"MorbidityTestName\": \" " +  xl.get("MorbidityTestName")+ "\",\r\n"
+			 		+ "  \"MorbidityMarkerRef\": \" " + xl.get("MorbidityMarkerRef") + "\",\r\n"
+			 		+ "  \"MorbidityTestUnit\": \" " +xl.get("MorbidityTestUnit") +  " \"\r\n"
+			 		+ "}";
+		 
+		 return payload;
+			
+	}
+
+	
+	
+}

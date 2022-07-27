@@ -59,10 +59,8 @@ public class ExcelReader {
 					columnMapdata.putAll(getCellValue(sheet, row, currentColumn));
 				}
 				excelRows.add(columnMapdata);
-
 			}
 		}
-		
 		return excelRows;
 	}
 	

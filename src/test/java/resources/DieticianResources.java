@@ -2,14 +2,14 @@ package resources;
 
 public enum DieticianResources {
 	
+
 	GetRecipe("Recipes/"),
-	GETFoodCategory("Recipes/RecipeFoodCategory="),
-	GetRecipeIngredent("Recipes/RecipeIngredient="),
+	GetFoodCategory("Recipes/RecipeFoodCategory="),
+	GetRecipeIngredient("Recipes/RecipeIngredient="),
 	GetRecipeByNutrient("Recipes/RecipeNutrient="),
-	GetRecipeByRecipeType("api/Recipes/RecipeType="),
+	GetRecipeByRecipeType("Recipes/RecipeType="),
 	
-	GetUserApi("Users/"),
-	GetUserByApi("us"),
+	GetUserApi("Users"),
 	GetUserByFirstName("Users/FirstName="),
 	GetUserByUserType("Users/UserType="),
 	GetUserByDieticianID("Users/DieticianId="),
@@ -24,16 +24,22 @@ public enum DieticianResources {
 	GetMorbiditybyName("Morbidity/MorbidityName="),
 	GetMorbiditybyTestid("Morbidity/MorbidityTestId="),
 	
-	PostMorbidity("Morbidity"),
+	PostMorbidity("Morbidity/"),
+	PutMorbidity("Morbidity/MorbidityName="),
+	PutMorbiditybyTestId("&MorbidityTestId="),
 	DeleteMorbidity("Morbidity/MorbidityName="),
 	DeleteMorbiditybyTestId("&MorbidityTestId="),
-	
+	PostatchMorbidity("Morbidity/"),
+	GetMorbidityTestid("Morbidity/MoidityTestId="),	
+	GetMorbidityName("Moidity/MorbidityName="),
+	getRecipe("Recips/"),
 	MorbidityAPI("Morbidity/"),
 	UserApi("Users/"),
 
-	UserApiWrong("users/"),
-    userApi("userss/");
+	UserApiWrong("users/");
 
+
+	
     private String resource;
 
     DieticianResources(String resource)
@@ -45,5 +51,4 @@ public enum DieticianResources {
     {
     	return resource;
     }
-
 }
