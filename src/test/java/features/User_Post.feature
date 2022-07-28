@@ -6,6 +6,7 @@ Feature: Creating User Details
 
   #Valid Data
   @UserPost
+  @SmokeTest
   Scenario Outline: check User Post request
     Given User creates POST Method EndPoint  with data from "<sheetName>" and <RowNumber>
     When User calls "UserApi" Https Request with "POST"
@@ -17,6 +18,7 @@ Feature: Creating User Details
 
   #Wrong EndPoint
   @UserPost
+  @SanityTest
   Scenario Outline: check User Post request
     Given User creates POST Method EndPoint  with data from "<sheetName>" and <RowNumber>
     When User calls "UserApiWrong" Https Request with "POST"
@@ -28,6 +30,7 @@ Feature: Creating User Details
 
   #InvalidFirstname
   @UserPostAPIwithInvalidFirstName
+  @RegressionTest
   Scenario Outline: check User Post request
     Given User creates POST Method EndPoint  with data from "<sheetName>" and <RowNumber>
     When User calls "UserApi" Https Request with "POST"
@@ -44,6 +47,7 @@ Feature: Creating User Details
 
   #InvalidLastname
   @UserPostAPIwithInvalidLastName
+  @RegressionTest
   Scenario Outline: check User Post request
     Given User creates POST Method EndPoint  with data from "<sheetName>" and <RowNumber>
     When User calls "UserApi" Https Request with "POST"
@@ -60,6 +64,7 @@ Feature: Creating User Details
 
   #InvalidCity
   @UserPostAPIwithInvalidCity
+  @RegressionTest
   Scenario Outline: check User Post request
     Given User creates POST Method EndPoint  with data from "<sheetName>" and <RowNumber>
     When User calls "UserApi" Https Request with "POST"
@@ -76,6 +81,7 @@ Feature: Creating User Details
 
   #InvalidState
   @UserPostAPIwithInvalidState
+  @RegressionTest
   Scenario Outline: check User Post request
     Given User creates POST Method EndPoint  with data from "<sheetName>" and <RowNumber>
     When User calls "UserApi" Https Request with "POST"
@@ -90,6 +96,7 @@ Feature: Creating User Details
 
   #InvalidCountry
   @UserPostAPIwithInvalidCountry
+  @RegressionTest
   Scenario Outline: check User Post request
     Given User creates POST Method EndPoint  with data from "<sheetName>" and <RowNumber>
     When User calls "UserApi" Https Request with "POST"
@@ -104,6 +111,7 @@ Feature: Creating User Details
 
   #InvalidContact
   @UserPostAPIwithInvalidContact
+  @RegressionTest
   Scenario Outline: check User Post request
     Given User creates POST Method EndPoint  with data from "<sheetName>" and <RowNumber>
     When User calls "UserApi" Https Request with "POST"
@@ -118,6 +126,7 @@ Feature: Creating User Details
 
   #InvalidEmail
   @UserPostAPIwithInvalidEmail
+  @RegressionTest
   Scenario Outline: check User Post request
     Given User creates POST Method EndPoint  with data from "<sheetName>" and <RowNumber>
     When User calls "UserApi" Https Request with "POST"
@@ -132,6 +141,7 @@ Feature: Creating User Details
 
   #InvalidFoodcatogery
   @UserPostAPIwithInvalidCountry
+  @RegressionTest
   Scenario Outline: check User Post request
     Given User creates POST Method EndPoint  with data from "<sheetName>" and <RowNumber>
     When User calls "UserApi" Https Request with "POST"
@@ -149,6 +159,7 @@ Feature: Creating User Details
 
   #Invalid Allergy
   @UserPostAPIwithInvalidAllergy
+  @RegressionTest
   Scenario Outline: check User Post request
     Given User creates POST Method EndPoint  with data from "<sheetName>" and <RowNumber>
     When User calls "UserApi" Https Request with "POST"
@@ -162,6 +173,7 @@ Feature: Creating User Details
 
   #Invalid UserType
   @UserPostAPIwithInvalidUserType
+  @RegressionTest
   Scenario Outline: check User Post request
     Given User creates POST Method EndPoint  with data from "<sheetName>" and <RowNumber>
     When User calls "UserApi" Https Request with "POST"
@@ -178,6 +190,7 @@ Feature: Creating User Details
 
   #Invalid DieticianId
   @UserPostAPIInvalidDieticianId
+  @Regressiontest
   Scenario Outline: check User Post request
     GivenUser creates POST Method EndPoint  with data from "<sheetName>" and <RowNumber>
 
@@ -196,6 +209,7 @@ Feature: Creating User Details
 
   #Invalid SameEmailId
   @UserPostAPIInvalidSameEmailId
+  @RegressionTest
   Scenario Outline: check User Post request
     Given User creates POST Method EndPoint  with data from "<sheetName>" and <RowNumber>
     When User calls "UserApi" Https Request with "POST"
@@ -207,6 +221,7 @@ Feature: Creating User Details
 
   #Invalid SameContact
   @UserPostAPIWithInvalidSameContact
+  @RegressionTest
   Scenario Outline: check User Post request
     Given User creates POST Method EndPoint  with data from "<sheetName>" and <RowNumber>
     When User calls "UserApi" Https Request with "POST"

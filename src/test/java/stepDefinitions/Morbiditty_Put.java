@@ -42,7 +42,7 @@ public class Morbiditty_Put extends Base{
 	public void user_calls_put_morbidity_https_request_with(String resource, String method)
 	{
 		ReqParam="MorbidityName="+xl.get("ReqParam_MorbidityName")+"&MorbidityTestId="+xl.get("ReqParam_MorbidityTestId");
-		response=requestSpecBuilder.when().put(resource(resource) + ReqParam);
+		response = requestSpecBuilder.when().put(resource(resource) + ReqParam);
 	}
 
 	

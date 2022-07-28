@@ -1,15 +1,12 @@
 package stepDefinitions;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Map;
-
-import org.hamcrest.MatcherAssert;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -41,7 +38,9 @@ public class User_PutStepDef extends Base {
 		userputReq = PayLoad.createPayload(xl);
 		requestSpecBuilder = given().spec(requestSpecification()).body(userputReq);
 
-		//MatcherAssert.assertThat(userputReq,matchesJsonSchema(new File(getGlobalValue("UserPutReqSchema"))));
+		
+		assertThat(userputReq, matchesJsonSchemaInClasspath(getGlobalValue("UserPutReqSchema")));
+
 
 	}
 
@@ -55,14 +54,19 @@ public class User_PutStepDef extends Base {
 	}
 
 	@Then("User receive http {string} and response body")
-	public void user_receive_http_and_response_body(String statuscode) throws IOException {
+	public void user_receive_http_and_response_body(String statuscode) throws IOException{
 
-		Status = Integer.parseInt(xl.get("ExpectedStatusCode"));
+		try{
+			int statusCode  = Integer.valueOf(xl.get("ExpectedStatusCode"));
+		
 
-		if(Status==200)
+		if( statusCode==200)
 		{	response.then().assertThat().body(matchesJsonSchemaInClasspath(getGlobalValue("UserPutResSchema")));
 		}
 		
-		assertEquals(Status, response.getStatusCode());
+		assertEquals( Integer.parseInt(xl.get("ExpectedStatusCode")), response.getStatusCode());
+	}catch(NumberFormatException ex){ 
 	}
+	}
+	
 }
