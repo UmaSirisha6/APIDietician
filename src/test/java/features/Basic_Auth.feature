@@ -4,7 +4,7 @@ Feature: Checking Basic Authorization
 
 
 @SanityTest
-@Smoketest
+@SmokeTest
 @InNoAuth 
 Scenario: Checking API Authorization
 Given User create a http request 

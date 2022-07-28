@@ -1,6 +1,6 @@
 @PuTMorbidity
 Feature: Update Morbodity Details in Morbodity Api
-Background: Authorization is set to "Basic Auth" 
+Background: Authorization is set to Basic Auth 
 
 @SanityTest	 
 	Scenario Outline:  morbidity Api PUT request with morbidity data
