@@ -60,11 +60,10 @@ public void user_creates_post_method_endpoint_data_from_and(String sheetName, In
 	{
 
 		Morbidity = getJsonPath(response, "Message");
-		actualMorbidityTestID = response.jsonPath().getString("MorbidityTestId");
 		ExpectedTestId = xl.get("Morbidity Test ID");
 
-		assertEquals(ExpectedTestId, actualMorbidityTestID);
-		assertEquals(Expectedmessage, Morbidity);
+		assertEquals(ExpectedTestId, response.jsonPath().getString("MorbidityTestId") );
+		assertEquals(Expectedmessage, getJsonPath(response, "Message"));
 		assertEquals(Integer.parseInt(StatusCode), response.getStatusCode());
 
 	}

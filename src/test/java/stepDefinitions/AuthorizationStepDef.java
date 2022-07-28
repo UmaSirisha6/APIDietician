@@ -52,9 +52,12 @@ public class AuthorizationStepDef extends Base {
 	@Then("user should receive success code")
 	public void user_should_receive_success_code() throws NumberFormatException, IOException 
 	{
-		
+		int actualStatus = response.getStatusCode();
+		if(actualStatus == Integer.parseInt(getGlobalValue("StatusCode")))
 		 assertEquals( Integer.parseInt(getGlobalValue("StatusCode")),response.getStatusCode());
-	}
+		else 
+		assertEquals( Integer.parseInt(getGlobalValue("UnAuthorized")),response.getStatusCode());
+	}  
 
 	@Given("User create a http request with invalid details")
 	public void user_create_a_http_request_with_invalid_details() throws IOException 
@@ -71,8 +74,11 @@ public class AuthorizationStepDef extends Base {
 	@Then("user should receive unauthorized message")
 	public void user_should_receive_unauthorized_message() throws NumberFormatException, IOException 
 	{
-		
-        assertEquals( Integer.parseInt(getGlobalValue("ErrorCode")),response.getStatusCode());
+		int actualStatus = response.getStatusCode();
+		if(actualStatus == Integer.parseInt(getGlobalValue("ErrorCode")))
+		 assertEquals( Integer.parseInt(getGlobalValue("ErrorCode")),response.getStatusCode());
+		else 
+        assertEquals( Integer.parseInt(getGlobalValue("UnAuthorized")),response.getStatusCode());
 
 	}
 

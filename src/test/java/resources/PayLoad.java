@@ -74,10 +74,10 @@ public static String creatMorbidityPutBody(Map<String,String> xl) {
 	
 			
 		String payload = "{\r\n"
-			 		+ "  \"MorbidityName\": \" " + xl.get("MorbidityName") + "\",\r\n"
-			 		+ "  \"MorbidityTestName\": \" " +  xl.get("MorbidityTestName")+ "\",\r\n"
-			 		+ "  \"MorbidityMarkerRef\": \" " + xl.get("MorbidityMarkerRef") + "\",\r\n"
-			 		+ "  \"MorbidityTestUnit\": \" " +xl.get("MorbidityTestUnit") +  " \"\r\n"
+			 		+ "  \"MorbidityName\": \""+xl.get("MorbidityName")+"\",\r\n"
+			 		+ "  \"MorbidityTestName\": \""+ xl.get("MorbidityTestName")+"\",\r\n"
+			 		+ "  \"MorbidityMarkerRef\": \""+xl.get("MorbidityMarkerRef")+ "\",\r\n"
+			 		+ "  \"MorbidityTestUnit\": \""+xl.get("MorbidityTestUnit")+ " \"\r\n"
 			 		+ "}";
 		 
 		 return payload;
