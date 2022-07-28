@@ -1,10 +1,10 @@
 @Morbidity
 Feature: Creating User Details 
 Background: Authorization set to  Basic Auth
-    Given User creates htt request 
-    When user set Basic Auth
+
 
    @POstMorbitySinglePayload
+   @RegressionTest
    Scenario Outline: PostMorbidity with valid details 
    
 	Given User creates Post method Endpoint data from "<sheetName>" and <RowNumber>
@@ -17,6 +17,7 @@ Background: Authorization set to  Basic Auth
 	| POSTMorbidity | 1          |
 	
 	@PostMorbidityInvalidPayload
+	@RegressionTest
    Scenario Outline: PostMorbidity with invalid details 
    
 	Given User creates Post method Endpoint data from "<sheetName>" and <RowNumber>

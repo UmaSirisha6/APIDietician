@@ -36,6 +36,7 @@ public class Morbidity_Get extends Base {
 	public void user_creates_get_method_endpoint() throws IOException
    {
 		requestSpecBuilder = given().spec(requestSpecification());
+	    
 	}
 
 	
@@ -98,8 +99,11 @@ public class Morbidity_Get extends Base {
 	{
 	
 	   	if(Integer.parseInt(xl.get("StatusCode")) == Integer.parseInt(getGlobalValue("StatusCode")))
-	       	responseSpecBuilder =	requestSpecBuilder.then().body(containsString(expectedMorbidityID)).body(matchesJsonSchemaInClasspath("./jsonSchema/GetMorbiditySchema.json"));
-		else 
+	   	{
+	       	responseSpecBuilder =	requestSpecBuilder.then().body(containsString(expectedMorbidityID)).body(matchesJsonSchemaInClasspath(getGlobalValue("MorbidityGetResSchema")));
+		
+	   	} 
+	   	else 
 		{
 		    assertEquals(Integer.parseInt(xl.get("StatusCode")), response.getStatusCode()); 
 		} 
@@ -108,9 +112,7 @@ public class Morbidity_Get extends Base {
 	
 	@Then("User receive HTTP Status code and response body with MorbidityName")
 	public void user_receive_http_status_code_and_response_body_with_morbidity_name() throws IOException {
-			
 		
-		actualErrorMessage = response.jsonPath().getString("message");
 
 		if (Integer.parseInt(xl.get("StatusCode")) == Integer.parseInt(getGlobalValue("StatusCode"))) {
 			responseSpecBuilder = requestSpecBuilder.then().spec(responseSpecification())
@@ -121,9 +123,12 @@ public class Morbidity_Get extends Base {
 		else if (Integer.parseInt(xl.get("StatusCode")) == Integer.parseInt(getGlobalValue("ErrorCode"))) 
 		{
                assertEquals(Integer.parseInt(xl.get("StatusCode")), response.getStatusCode());
+              
+               
 		} else 
 		{
 			assertEquals(Integer.parseInt(xl.get("StatusCode")), response.getStatusCode());
+			
 			
 		}
 		

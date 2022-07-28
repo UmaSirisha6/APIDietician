@@ -42,7 +42,7 @@ public void user_creates_post_method_endpoint_data_from_and(String sheetName, In
 
 	requestSpecBuilder = given().spec(requestSpecification()).body(postRequestBody);
 
-	assertThat(postRequestBody, matchesJsonSchemaInClasspath("./jsonSchema/BeforePostMorbiditySchema.json"));
+	assertThat(postRequestBody, matchesJsonSchemaInClasspath(getGlobalValue("MorbidityPutReqSchema")));
 
 	}
 

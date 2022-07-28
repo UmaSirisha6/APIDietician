@@ -12,6 +12,7 @@ import io.cucumber.java.en.When;
 import resources.Base;
 import utility.ExcelUtil;
 
+
 public class Morbidity_Delete extends Base{
 	
 	String MorbidityID ;
@@ -41,7 +42,7 @@ public class Morbidity_Delete extends Base{
 		MorbidityID =  xl.get("MorbidityID");
 		ReqParam = "MorbidityName="+MorbidityName+"&MorbidityTestId="+MorbidityID ;
 	
-		response = requestSpecBuilder.when().delete(resource(resource) + ReqParam+ReqParam);
+		response = requestSpecBuilder.when().delete(resource(resource) + ReqParam);
 		
      }
 	
@@ -51,22 +52,9 @@ public class Morbidity_Delete extends Base{
 		Code = xl.get("StatusCode");
 
 		response = requestSpecBuilder.when().get(resource(resource)+MorbidityName);
-		Actual = getJsonPath(response, "Items.MorbidityName.size()").toString();
 		assertEquals(Integer.parseInt(Code), response.getStatusCode());
-
-		int itemsSize = Integer.valueOf(Actual);
-
-		for (int i = 0; i < itemsSize; i++) {
-			String actualMorbidity = getJsonPath(response, "Items[" + i + "].MorbidityName").toString();
-
-			if (actualMorbidity.equalsIgnoreCase(MorbidityName)) {
-				assertEquals(MorbidityName, actualMorbidity);
-			} else {
-				System.out.println("Not found");
-			}
-
-		}
-
+          assertEquals(MorbidityName,getJsonPath(response, "Items[0].MorbidityName").toString());
+		
 		}
 	
 	@Then("User receive HTTP {string} and JsonResponse body")

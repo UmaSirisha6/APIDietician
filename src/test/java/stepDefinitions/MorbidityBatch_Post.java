@@ -27,10 +27,8 @@ public class MorbidityBatch_Post extends Base {
 	@Given("User creates POSTMethod EndPoint  from sheet {string}")
 	public void user_creates_post_method_end_point_from_sheet(String sheetName) throws IOException 
 	{
-		switch(sheetName) {
-		case "BatchPostMorbidity1":  BatchPayload.getBatchPayload(sheetName);break;
-		case "BatchPostMorbidity" : requestSpecBuilder = given().spec(requestSpecification()).body(BatchPayload.creatingBatchPayload(sheetName)); break;
-		}
+	 requestSpecBuilder = given().spec(requestSpecification()).body(BatchPayload.creatingBatchPayload(sheetName)); 
+		
 				
 	}
 	

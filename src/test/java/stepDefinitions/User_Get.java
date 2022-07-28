@@ -1,43 +1,44 @@
 package stepDefinitions;
 
+import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.junit.Assert.assertEquals;
+
+import java.io.IOException;
+import java.util.Map;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 import resources.Base;
-import resources.DieticianResources;
 import utility.ExcelUtil;
-
-import static io.restassured.RestAssured.*;
-import static org.junit.Assert.assertEquals;
-
-import java.io.IOException;
-import java.util.Map;
-import static io.restassured.module.jsv.JsonSchemaValidator.*;
 
 public class User_Get extends Base {
 
 	Response response;
 	ExcelUtil xlutil;
-	DieticianResources resourceAPI;
 	Map<String, String> xl;
 	public String ByFirstName;
 	public String ByContact;
 	public String ByEmail;
 	public String ByUserType;
 	public String ByDieticianID;
-	String code;
 	int status;
-	String ErrorMessage;
-	String Msg;
-	String FirstName;
-	String Contact;
-	String Email;
-	String UserType;
-	String DieticianID;
-	String GivenUserType;
-	String ByUserTypeID;
-	Response response1;
+	public String ErrorMessage;
+	public String Msg;
+	public String FirstName;
+	public String Contact;
+	public String Email;
+	public String UserType;
+	public String DieticianID;
+	public String GivenUserType;
+	public String ByUserTypeID;
+	public Response response1;
+	static String StatusCode;
+	static String ErrorCode;
+	static String badRequest;
 
 	@Given("User creates GET Method")
 	public void user_creates_get_method() throws IOException 
@@ -82,54 +83,74 @@ public class User_Get extends Base {
 		}
 	}
 
+	@Then("User should receive HTTP Status code and response fields")
+	public void user_should_receive_http_status_code_and_response_fields() throws IOException {
+		
+		int actualStatusCode = response.getStatusCode();
+		 
+		if(actualStatusCode == Integer.parseInt(getGlobalValue("StatusCode")))
+		responseSpecBuilder = requestSpecBuilder.then().spec(responseSpecification()).body(matchesJsonSchemaInClasspath(getGlobalValue("UserGetResSchema")));
+		else
+			assertEquals(Integer.parseInt(getGlobalValue("BadRequest")),actualStatusCode);
+	
+	}
+	
 	@Then("User should receive HTTP Status code and response fields for {string}")
 	public void user_should_receive_http_status_code_and_response_fields_for(String method) throws IOException {
 
-		if (method.equalsIgnoreCase("Get")) 
+
+		if (method == "GetByFirstName") 
 		{
-			responseSpecBuilder = requestSpecBuilder.then().spec(responseSpecification()).body(matchesJsonSchemaInClasspath(getGlobalValue("UserGetResSchema")));
+			if (Integer.parseInt(xl.get("StatusCode"))==Integer.parseInt(getGlobalValue("StatusCode"))) 
+			{
+				responseSpecBuilder = requestSpecBuilder.then()
+						.body(matchesJsonSchemaInClasspath(getGlobalValue("GetRecipeSchema"))).and()
+						.body(containsString("ByFirstname"));
+				assertEquals(ByFirstName, response.jsonPath().get("Items.FirstName"));
+		}
 		}
 
-		else if (!method.equalsIgnoreCase("Get")) {
-			code = xl.get("StatusCode");
-			status = Integer.parseInt(code);
+		    else if (method == "GetByContact")
+		 {
+			if (Integer.parseInt(xl.get("StatusCode")) == Integer.parseInt(getGlobalValue("StatusCode"))) 
 			
-			assertEquals(status, response.getStatusCode());
-
-			if (method.equalsIgnoreCase("GetByFirstName")) 
 			{
-				FirstName = getJsonPath(response,"Items[0].FirstName").toString();
-                            assertEquals(ByFirstName, FirstName); 
+				responseSpecBuilder = requestSpecBuilder.then().spec(responseSpecification())
+						.body(matchesJsonSchemaInClasspath(getGlobalValue("GetRecipeSchema"))).and()
+						.body(containsString("ByContact"));
+		 }
+		 }
+			else if (method == "GetByEmail") 
+		 {
+				if (Integer.parseInt(xl.get("StatusCode")) == Integer.parseInt(getGlobalValue("StatusCode"))) 
+				{responseSpecBuilder = requestSpecBuilder.then().spec(responseSpecification())
+						.body(matchesJsonSchemaInClasspath(getGlobalValue("GetRecipeSchema"))).and()
+						.body(containsString("ByEmail"));
+				}
+		} else if (method == "GetByUserType")
+		{
+			if (Integer.parseInt(xl.get("StatusCode")) == Integer.parseInt(getGlobalValue("StatusCode"))) 
+			{	responseSpecBuilder = requestSpecBuilder.then().spec(responseSpecification())
+						.body(matchesJsonSchemaInClasspath(getGlobalValue("GetRecipeSchema")));
 
-			} else if (method.equalsIgnoreCase("GetByContact")) 
-			{
-				Contact = getJsonPath(response, "Items[0].Contact").toString();
-				assertEquals(ByContact, Contact);
-
-			} else if (method.equalsIgnoreCase("GetByEmail")) 
-			{
-				Email = getJsonPath(response, "Items[0].Email").toString();
-				assertEquals(ByEmail, Email);
-
-			} else if (method.equalsIgnoreCase("GetByUserType")) {
 				String User = getJsonPath(response, "Items[0].UserId").toString();
-				UserType = User.substring(0, 2); 
+				UserType = User.substring(0, 2);
 				ByUserTypeID = xl.get("GetUserByUserTypeID");
 				GivenUserType = ByUserTypeID.substring(0, 2);
 				assertEquals(GivenUserType, UserType);
 			}
-
-			else if (method.equalsIgnoreCase("GetByDieticianID")) {
-				DieticianID = getJsonPath(response, "Items[0].UserId").toString();
-				assertEquals(ByDieticianID, DieticianID);
+		} else if (method == "GetByDieticianID")
+		{
+			if (Integer.parseInt(xl.get("StatusCode")) == Integer.parseInt(getGlobalValue("StatusCode"))) 
+			{	responseSpecBuilder = requestSpecBuilder.then().spec(responseSpecification())
+						.body(matchesJsonSchemaInClasspath(getGlobalValue("GetRecipeSchema"))).and()
+						.body(containsString("ByDieticianID"));
 			}
+      		} else
+				{  
+				assertEquals(Integer.parseInt(xl.get("StatusCode")), response.getStatusCode());
 
-			if (status == 404) {
-				ErrorMessage = xl.get("Message");
-				Msg = getJsonPath(response, "Message");
-			assertEquals(ErrorMessage, Msg);
-			}
+		        }
 		}
-	}
-
+	
 }

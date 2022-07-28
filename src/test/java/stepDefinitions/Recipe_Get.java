@@ -1,6 +1,7 @@
 package stepDefinitions;
 
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
@@ -23,10 +24,13 @@ public class Recipe_Get extends Base {
 	static String StatusCode;
 	static String ErrorCode;
 	static String badRequest;
+	String refresource ;
+	
 
 	@When("user calls {string} http with Get method")
 	public void user_calls_http_with_get_method(String resource) throws NullPointerException {
 		
+		this.refresource = resource;
 		response = requestSpecBuilder.when().get(resource(resource));
 
 	}
@@ -41,6 +45,7 @@ public class Recipe_Get extends Base {
 		expectedIngredient = xl.get("GetRecipeByIngredient");
 		expectedNutrient = xl.get("GetRecipeByNutrient");
 		expectedRecipeType = xl.get("GetRecipeByRecipeType");
+		
 
 		switch (method) {
 		case "GetRecipe":
@@ -66,8 +71,15 @@ public class Recipe_Get extends Base {
 	public void user_receive_http_status_code_and_response_body() throws IOException
 	{
 
-		String StatusCode = getGlobalValue("StatusCode");
-        assertEquals(Integer.parseInt(StatusCode), response.getStatusCode());
+		switch(this.refresource) {
+		case "GetRecipe": 
+			
+			responseSpecBuilder = requestSpecBuilder.then().spec(responseSpecification()). body(matchesJsonSchemaInClasspath(getGlobalValue("GetRecipeSchema")));
+		break;
+		case "getRecipe": assertEquals(Integer.parseInt(getGlobalValue("BadRequest")), response.getStatusCode());
+		break;
+		}
+		
 	}
 
 	@Then("User receive HTTP Status code in {string} method and response body")
@@ -79,15 +91,29 @@ public class Recipe_Get extends Base {
 		ErrorCode = getGlobalValue("ErrorCode");
 		badRequest = getGlobalValue("BadRequest");
 
-		if (Integer.parseInt(code) == Integer.parseInt(StatusCode)) 
+		if (Integer.parseInt(code) == Integer.parseInt(StatusCode) && method == "GetRecipeByFoodCategory") 
 		{
-			responseSpecBuilder = requestSpecBuilder.then().spec(responseSpecification()). body(matchesJsonSchemaInClasspath(getGlobalValue("GetRecipeSchema")));
+			responseSpecBuilder = requestSpecBuilder.then().spec(responseSpecification()). body(matchesJsonSchemaInClasspath(getGlobalValue("GetRecipeSchema"))).and().body(containsString("expectedFoodCategory"));
+			assertEquals(expectedFoodCategory,response.jsonPath().get("Items.RecipeFoodCategory"));
 			
-		} 
-		else if (Integer.parseInt(code) == Integer.parseInt(ErrorCode)) {
+		} else if (Integer.parseInt(code) == Integer.parseInt(StatusCode) && method == "GetRecipeByIngredient") 
+		{
+			responseSpecBuilder = requestSpecBuilder.then().spec(responseSpecification()). body(matchesJsonSchemaInClasspath(getGlobalValue("GetRecipeSchema"))).and().body(containsString("expectedIngredient"));
+					
+		} else if (Integer.parseInt(code) == Integer.parseInt(StatusCode) && method == "GetRecipeByNutrient") 
+		{
+			responseSpecBuilder = requestSpecBuilder.then().spec(responseSpecification()). body(matchesJsonSchemaInClasspath(getGlobalValue("GetRecipeSchema"))).and().body(containsString("expectedNutrient"));
+					
+		}  else if (Integer.parseInt(code) == Integer.parseInt(StatusCode) && method == "GetRecipeByRecipeType") 
+		{
+			responseSpecBuilder = requestSpecBuilder.then().spec(responseSpecification()). body(matchesJsonSchemaInClasspath(getGlobalValue("GetRecipeSchema"))).and().body(containsString("expectedRecipeType"));
+					
+		}  else if (Integer.parseInt(code) == Integer.parseInt(ErrorCode)) {
 			assertEquals(Integer.parseInt(code), response.getStatusCode());
+			
 		} else if (Integer.parseInt(code) == Integer.parseInt(badRequest)) {
 			assertEquals(Integer.parseInt(code), response.getStatusCode());
+			assertEquals(getGlobalValue("badRequestMessage"), response.jsonPath().get("msg"));
 
 		}
 

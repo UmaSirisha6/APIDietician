@@ -4,6 +4,7 @@ Feature: Delete User record in User Api
   Background: Authorization is set to "Basic Auth"
 
   @UserApiDELETE
+  @RegressionTest
   Scenario Outline: check if user able to delete User record in UserAPI
     Given User creates DELETE Method EndPoint
     When User calls "UserApi" http Request with "DELETE" from "<sheetName>" and <RowNumber>
@@ -15,6 +16,7 @@ Feature: Delete User record in User Api
 
   #Invalid Endpoint
   @UserApiDELETEWithInvalidEndPoint
+  @SmokeTest
   Scenario Outline: check if user able to delete User record in UserAPI
     Given User creates DELETE Method EndPoint
     When User calls "UserApiWrong" http Request with "DELETE" from "<sheetName>" and <RowNumber>
@@ -25,6 +27,7 @@ Feature: Delete User record in User Api
       | UserApiDELETE |         0 |
 
   @UserApiDELETEWithInvalidParams
+  @RegressionTest
   Scenario Outline: check if user able to delete User record in UserAPI
     Given User creates DELETE Method EndPoint
     When User calls "UserApi" http Request with "DELETE" from "<sheetName>" and <RowNumber>

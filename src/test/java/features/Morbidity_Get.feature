@@ -5,11 +5,13 @@ Background: Authorization is set to Basic Auth
 	Given User creates GET Method Endpoint 
 	
 	@GetAllMorbidity
+	@SanityTest
 	Scenario: GET HTTP REQUEST 
 	When User calls "GetMorbidity" with "GET" Https Request 
     Then User receive HTTP Status code 
      
      @MorbidityName	
+     @SmokeTest
     Scenario Outline: Check if we are getting record of a particular MorbidityName
 	When User calls "GetMorbiditybyName" Https Request with "GETByName" from "<sheetName>" and <RowNumber>
 	Then User receive HTTP Status code and response body with MorbidityName 
@@ -20,6 +22,7 @@ Background: Authorization is set to Basic Auth
 	
 	# Wrong ENDPOINT
 	@MorbidityNameWithWrondEndpoint
+	@SmokeTest
 	Scenario Outline: Check MorbidityName with Wrong Endpoint
 	When User calls "GetMorbidityName" Https Request with "GETByName" from "<sheetName>" and <RowNumber>
 	Then User receive HTTP Status code and response body with MorbidityName
@@ -30,6 +33,7 @@ Background: Authorization is set to Basic Auth
 	
 	#Invalid Details 
 	@MorbidityNamewithInvalidDetails
+	@RegressionTest
 	Scenario Outline: Check if we are getting record of a particular MorbidityName with invalid details
 	When User calls "GetMorbiditybyName" Https Request with "GETByName" from "<sheetName>" and <RowNumber>
 	Then User receive HTTP Status code and response body with MorbidityName 
@@ -45,6 +49,7 @@ Background: Authorization is set to Basic Auth
 	
 	#Different reqest
 	@MorbidityNamewithDifferentMethods
+	@RegressionTest
 	Scenario Outline: Check MorbidityName API With different requests
 	When User calls "GetMorbiditybyName" Https Request from "<sheetName>" and <RowNumber>
 	Then User receive HTTP Status code and response body with MorbidityName 
@@ -57,6 +62,7 @@ Background: Authorization is set to Basic Auth
 	
 	#MorbidityTestId
 	@GetMorbidityTestID
+	@RegressionTest
     Scenario Outline: Check MorbidityTestId with valid id and endpoint
 	When User calls "GetMorbiditybyTestid" Https Request with "GETByID" from "<sheetName>" and <RowNumber>
 	Then User receive HTTP Status code and response body with MorbidityID
@@ -67,6 +73,7 @@ Background: Authorization is set to Basic Auth
 	
 	#MorbidityWrong Endpoint
 	@GetMorbidityByTestIdWithwrongEndpoint
+	@RegressionTest
 	Scenario Outline: Check  MorbidityTestId with valid id and wrong endpoint
 	When User calls "GetMorbidityTestid" Https Request with "GETByID" from "<sheetName>" and <RowNumber>
 	Then  User receive HTTP Status code and response body with MorbidityID
@@ -77,6 +84,7 @@ Background: Authorization is set to Basic Auth
 	
 		#Invalid Details 
 	@MorbidityBytestIdwithInvaliddetails
+	@RegresstionTest
 	Scenario Outline: Check MorbidityId with invalid details
 	When User calls "GetMorbiditybyTestid" Https Request with "GETByID" from "<sheetName>" and <RowNumber>
 	Then User receive HTTP Status code and response body with MorbidityID
@@ -92,6 +100,7 @@ Background: Authorization is set to Basic Auth
 	
 	#WithDifferentRequest
 	@MorbidityByIdwithdifferentRequest
+	@RegressionTest
 	Scenario Outline: Check MorbidityId with different endpoints
 	When User calls "GetMorbiditybyTestid" Https Request from "<sheetName>" and <RowNumber>
 	Then User receive HTTP Status code and response body with MorbidityID

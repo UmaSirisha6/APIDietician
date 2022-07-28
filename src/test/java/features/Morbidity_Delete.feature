@@ -5,6 +5,7 @@ Background: Authorization is set to Basic Auth
   
 
 @MorbidityDeleteUser
+@SanityTest
 Scenario Outline: Morbidity Delete http request  
   
   When User calls "DeleteMorbidity" "DeleteMorbiditybyTestId" with "Delete"  http request from  "<sheetName>" <RowNumber>
@@ -18,6 +19,7 @@ Scenario Outline: Morbidity Delete http request
 	
 	
  @MorbidityDELETEwithoutMorbidityName  
+ @SmokeTest
 Scenario Outline: Morbidity Delete without MorbidityName
   
  When  User calls "DeleteMorbidity" "DeleteMorbiditybyTestId" with "Delete"  http request from  "<sheetName>" <RowNumber>
@@ -29,6 +31,7 @@ Scenario Outline: Morbidity Delete without MorbidityName
 	
 	
  @MorbidityDELETEwithoutMorbidityTEST_ID 
+ @RegressionTest
 Scenario Outline: Morbidity Delete without Test_ID
 
  When User calls "DeleteMorbidity" "DeleteMorbiditybyTestId" with "Delete"  http request from  "<sheetName>" <RowNumber>
@@ -39,6 +42,7 @@ Scenario Outline: Morbidity Delete without Test_ID
 	|DELETEMorbidity | 2          |
  
   @MorbidityDELETEwithoutMorbidityTEST_ID 
+  @RegressionTest
 Scenario Outline: Morbidity Delete with Non-existing Test_ID 
   
  When  User calls "DeleteMorbidity" "DeleteMorbiditybyTestId" with "Delete"  http request from  "<sheetName>" <RowNumber>
@@ -48,7 +52,10 @@ Scenario Outline: Morbidity Delete with Non-existing Test_ID
   Examples:
 	|sheetName    	 | RowNumber  |
 	|DELETEMorbidity | 5          |
-	
+
+
+@MorbidityDeletewithNon-exisitingMorbidityName
+@RegressionTest	
 Scenario Outline: Morbidity Delete with Non-existing MorbidityName
 
  When  User calls "DeleteMorbidity" "DeleteMorbiditybyTestId" with "Delete"  http request from  "<sheetName>" <RowNumber>

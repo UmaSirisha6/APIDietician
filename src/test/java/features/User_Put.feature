@@ -4,6 +4,7 @@ Feature: Update User Details in UserAPI
   Background: Authorization is set to "Basic Auth"
 
   @UserPUTApi
+  @RegressionTest
   Scenario Outline: check User Put request
     Given User creates PUT Method EndPoint from "<sheetName>" and <RowNumber>
     When User calls "UserApi" Http Request with "PUT"
@@ -14,6 +15,7 @@ Feature: Update User Details in UserAPI
 
   #Wrong Endpoint
   @UserPutApiWithInvlidEndPoint
+  @SmokeTest
   Scenario Outline: check User Put request
     Given User creates PUT Method EndPoint from "<sheetName>" and <RowNumber>
     When User calls "UserApiWrong" Http Request with "PUT"
@@ -25,6 +27,7 @@ Feature: Update User Details in UserAPI
 
   #Invalid  Firstname
   @UserPutApiWithInvlidFirstname
+  @RegressionTest
   Scenario Outline: check User Put request
     Given User creates PUT Method EndPoint from "<sheetName>" and <RowNumber>
     When User calls "UserApi" Http Request with "PUT"
@@ -39,6 +42,7 @@ Feature: Update User Details in UserAPI
 
   #Invalid  Lastname
   @UserPutAPIWithInvalidLastname
+  @RegressionTest
   Scenario Outline: check User Put request
     Given User creates PUT Method EndPoint from "<sheetName>" and <RowNumber>
     When User calls "UserApi" Http Request with "PUT"
@@ -53,6 +57,7 @@ Feature: Update User Details in UserAPI
 
   #Invalid Contact
   @UserPutAPIWithInvalidContact
+  @RegressionTest
   Scenario Outline: check User Put request
     Given User creates PUT Method EndPoint from "<sheetName>" and <RowNumber>
     When User calls "UserApi" Http Request with "PUT"
@@ -67,6 +72,7 @@ Feature: Update User Details in UserAPI
 
   #Invalid City
   @UserPutAPIWithInvalidCity
+  @RegressionTest
   Scenario Outline: check User Put request
     Given User creates PUT Method EndPoint from "<sheetName>" and <RowNumber>
     When User calls "UserApi" Http Request with "PUT"
@@ -80,6 +86,7 @@ Feature: Update User Details in UserAPI
 
   #Invalid State
   @UserPutAPIWithInvalidState
+  @RegressionTest
   Scenario Outline: check User Put request
     Given User creates PUT Method EndPoint from "<sheetName>" and <RowNumber>
     When User calls "UserApi" Http Request with "PUT"
@@ -93,6 +100,7 @@ Feature: Update User Details in UserAPI
 
   #Invalid Country
   @UserPutAPIWithInvalidCountry
+  @Regressiontest
   Scenario Outline: check User Put request
     Given User creates PUT Method EndPoint from "<sheetName>" and <RowNumber>
     When User calls "UserApi" Http Request with "PUT"
@@ -106,6 +114,7 @@ Feature: Update User Details in UserAPI
 
   #Invalid EmailID
   @UserPutAPIWithInvalidEmailID
+  @RegressionTest
   Scenario Outline: check User Put request
     Given User creates PUT Method EndPoint from "<sheetName>" and <RowNumber>
     When User calls "UserApi" Http Request with "PUT"
@@ -120,6 +129,7 @@ Feature: Update User Details in UserAPI
 
   #Invalid FoodCategory
   @UserPutAPIWithInvalidFoodCategory
+  @RegressionTest
   Scenario Outline: check User Put request
     Given User creates PUT Method EndPoint from "<sheetName>" and <RowNumber>
     When User calls "UserApi" Http Request with "PUT" 
@@ -134,6 +144,7 @@ Feature: Update User Details in UserAPI
 
   #Invalid Allergy
   @UserPutAPIWithInvalidAllergy
+  @RegressionTest
   Scenario Outline: check User Put request
     Given User creates PUT Method EndPoint from "<sheetName>" and <RowNumber>
     When User calls "UserApi" Http Request with "PUT"
@@ -148,6 +159,7 @@ Feature: Update User Details in UserAPI
 
   #Invalid Input Parameters
   @UserPutAPIWithInvalidParams
+  @RegressionTest
   Scenario Outline: check User Put request
     Given User creates PUT Method EndPoint from "<sheetName>" and <RowNumber>
     When User calls "UserApi" Http Request with "PUT"
